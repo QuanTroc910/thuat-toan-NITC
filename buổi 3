@@ -1,0 +1,152 @@
+#include<bits/stdc++.h>
+using namespace std;
+// con ma 
+int chess( string s){
+	int arr1[]={2,-2},arr2[]={1,-1},x=s[0]-48,y=s[1]-96;
+	int dem=0;
+	for(int i=0;i<2;i++){
+		for(int j=0;j<2;j++){
+			if(x+arr1[i]>=1&&x+arr1[i]<=8&&y+arr2[j]>=1&&y+arr2[j]<=8){
+				dem++;
+			}
+		}
+	}
+	for(int i=0;i<2;i++){
+		for(int j=0;j<2;j++){
+			if(x+arr1[j]>=1&&x+arr1[j]<=8&&y+arr2[i]>=1&&y+arr2[i]<=8){
+				dem++;
+			}
+		}
+	}
+	return dem ;
+}
+//ma tran xoan oc
+void matrix(){
+	int n;
+	cin>>n;
+	int a[n][n];
+	int c1=0,c2=n-1,d1=0,d2=n-1;
+	int dem=1;
+	while(d1<=d2&&c1<=c2){
+		for(int i=c1;i<=c2;i++){
+			a[d1][i]=dem;
+			dem=dem+1;
+		}++d1;
+		for(int i=d1;i<=d2;i++){
+			a[i][c2]=dem;
+			dem=dem+1;
+		}--c2;
+		if(c1<=c2){
+			for(int i=c2;i>=c1;i--){
+				a[d2][i]=dem;
+				dem=dem+1;
+			}
+		}--d2;
+		if(d1<=d2){
+			for(int i=d2;i>=d1;i--){
+				a[i][c1]=dem;
+				dem=dem+1;
+			}
+		}++c1;
+	}
+	for(int i=0;i<n;i++){
+		for(int j=0;j<n;j++){
+			cout<<a[i][j];
+		}
+		cout<<endl;
+	}
+	
+}
+//ma tran m*n
+void nhap(){
+		int m,n;
+	cin>>m>>n;
+	int arr[m][n];
+	for(int i=0;i<m;i++){
+		for(int j=0;j<n;j++){
+			cin>>arr[i][j];
+		}
+	}
+}
+int  matrix(int arr){
+	int cnt1,cnt2,tmp=1;
+	for(int i=0;i<m;i++){
+		for(int j=0;j<n;j++){
+			if(arr[i][j]==1){
+				cnt1=i;
+				cnt2=j;
+			}
+		}
+	}
+	while(tmp<m*n){
+		if(cnt1>=0&&cnt1<m&&arr[cnt1+1][cnt2]=tmp){
+			tmp++;
+			cnt1++;
+		}
+		else if(cnt1>=0&&cnt1<m&&arr[cnt1-1][cnt2]=tmp){
+			tmp++;
+			cnt1--;
+		}
+		else if(cnt2>=0&&cnt2<n&&arr[cnt1][cnt2+1]=tmp){
+			cnt2++;
+			tmp++;
+		}
+		else if(cnt2>=0&&cnt2<n&&arr[cnt1][cnt2+1]=tmp){
+			cnt2++;
+			tmp++;
+		}
+		else return 0;
+	}
+	return 1;
+}
+
+
+
+// xap xep noi bot
+void bbsort(int arr[],int n){
+	for(int i=0;i<n-1;i++){
+		for(int j=0;j<n-i-1;j++){
+			if(arr[j]>arr[j+1]){
+				int tmp=arr[j];
+				arr[j]=arr[j+1];
+				arr[j+1]=tmp;
+			}
+		}
+	}
+}
+// xap xep chon 
+void sx (int arr[],int n){
+	for(int i=0;i<n-1;i++){
+	int min =arr[i];
+		for(int j=1;j<n;j++){
+			if(arr[j]<min){
+				min=arr[j];
+				int tmp=arr[i];
+				arr[i]=arr[j];
+				arr[j]=tmp;
+			}
+		}
+	}
+}
+// day fibo
+long fibo(long n){
+	vector<long> fibo(n+1);
+	fibo[0]=0;
+	fibo[1]=1;
+	for(long i=2;i<=n;i++){
+		fibo[i]=(fibo[i-1]+fibo[i-2])%1000000007;
+	}
+	return fibo[n];
+}
+int main(){
+	int n;
+	cin>>n;
+	int arr[n];
+	for(int i=0;i<n;i++){
+		cin>>arr[i];
+	}
+	sx(arr,n);
+	for(int i=0;i<n;i++){
+		cout<<arr[i]<<" ";
+	}
+}
