@@ -1,0 +1,155 @@
+
+///Sinh nhi phan
+#include<bits/stdc++.h>
+using namespace std;
+int a[100],n,stop=0;
+void khoitao(){
+    for(int i=0;i<n;i++){
+       a[i]=0;
+    }
+ }
+ void xuat(){
+    for(int i=0;i<n;i++){
+       cout<<a[i];
+    }
+    cout<<endl;
+ }
+ void sinh(){
+    int i=n-1;
+    while(i>=0&&a[i]==1){
+      a[i]=0;
+      i--;
+    }
+    if(i==-1){stop=1;}
+    else{a[i]=1;}
+ }
+ void ctrinh(){
+    while(stop==0)
+    {
+        xuat();
+    	sinh();
+    }
+ } 
+ int main(){
+  	cin>>n;
+ 	khoitao();
+ 	ctrinh();
+ }
+ //sinh hoan vi
+ 
+
+ // Sinh to hop
+#include <bits/stdc++.h>
+ using namespace std;
+ int a[100], n, k, stop=0;
+ void khoitao(){
+    for(int i=1;i<=k;i++){
+       a[i]=i;
+    }
+ }
+ void xuat(){
+    for(int i=1;i<=k;i++){
+       cout<<a[i]<<" ";
+    }
+    cout<<endl;
+ }
+ void sinh()
+ {
+    int i=k;
+    while(a[i]==n-k+i){i--;}
+    if(i==0){stop=1;}
+    else{
+       a[i]++;
+       int p=a[i];
+       while(i<=k){a[i++]=p++;}
+    }
+ }
+ void ctrinh()
+ {
+    while(stop==0){
+       xuat();
+       sinh();
+    }
+ }
+ int main(){
+       cin>>n>>k;
+       khoitao();
+       ctrinh();
+ }
+ ///// sinh to hop
+  
+//#include<bits/stdc++.h>
+//using namespace std;
+//int n,stop=0,a[9];
+//
+//void swap(int a,int b){
+//	int i=a;
+//	a=b;
+//	i=b;
+//}
+//void khoitao(){
+//	for(int i=1;i<=n;i++){
+//		a[i]=i;
+//	}
+//}
+//void sinh(){
+//	int i=n-1;
+//	while(i>0&&a[i]>a[i+1])
+//	i--;
+//	if(i==0) stop=1;
+//	else {
+//		int k=n;
+//		while(a[i]>a[k]) 
+//		k--;
+//		swap(a[k],a[i]);
+//		int c=n,r=i+1;
+//		while(r<c){
+//			swap(a[c],a[r]);
+//			r++;
+//			c--;
+//			
+//		}
+//	}
+//}
+//void xuat(){
+//	for(int i=1;i<=n;i++){
+//		cout<<a[i];
+//	}cout<<endl;
+//}
+//void chuongtrinh(){
+//	cin>>n;
+//	khoitao();
+//	do{
+//		sinh();
+//		xuat();
+//	}
+//	while(!stop);
+//}
+//int main(){
+//	chuongtrinh();
+//}
+
+
+// atm
+#include<bits/stdc++.h>
+using namespace std;
+
+int main(){
+	int n,t;
+	cin>>n>>t;
+	int arr[n];
+	for(int i=1;i<=n;++i)
+	cin>>arr[i];
+	sort(arr,arr+n);
+	int res=0;
+	for(int i=n;i>=1;--i)
+	if(t>=arr[i]){
+		t=t-arr[i];
+		++res;
+	}
+	if(t==0)
+	cout<<res;
+	else cout <<-1;
+	return 0;
+}
+
